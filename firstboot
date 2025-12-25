@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+set -e
+
+echo ""
+echo "🚀 FIRSTBOOT — macOS Developer Environment Setup"
+echo ""
+
+# Ensure Homebrew exists
+if ! command -v brew >/dev/null 2>&1; then
+  echo "❌ Homebrew is not installed."
+  echo "Install it from https://brew.sh and run firstboot again."
+  exit 1
+fi
+
+# -----------------------------
+# Helper functions
+# -----------------------------
+
+install_formula() {
+  local pkg="$1"
+  if brew list "$pkg" >/dev/null 2>&1; then
+    echo "✅ $pkg already installed"
+  else
+    echo "📦 Installing $pkg"
+    brew install "$pkg"
+  fi
+}
+
+install_cask() {
+  local app="$1"
+  if brew list --cask "$app" >/dev/null 2>&1; then
+    echo "✅ $app already installed"
+  else
+    echo "📦 Installing $app"
+    brew install --cask "$app"
+  fi
+}
+
+# -----------------------------
+# Profile selection
+# -----------------------------
+
+echo "Choose a setup profile:"
+echo "1) Minimal (git, neovim, python)"
+echo "2) Web Developer (Node, VS Code, Chrome)"
+echo "3) Full Stack (Web + Python + Docker)"
+echo ""
+
+read -p "Enter choice (1/2/3): " PROFILE
+
+echo ""
+
+# -----------------------------
+# Install common tools
+# -----------------------------
+
+install_formula git
+install_formula neovim
+
+# -----------------------------
+# Profile-specific installs
+# -----------------------------
+
+case "$PROFILE" in
+  1)
+    install_formula python
+    ;;
+  2)
+    install_formula python
+    install_formula node
+    install_cask visual-studio-code
+    install_cask google-chrome
+    ;;
+  3)
+    install_formula node
+    install_formula python
+    install_formula docker
+    install_cask visual-studio-code
+    ;;
+  *)
+    echo "❌ Invalid selection"
+    exit 1
+    ;;
+esac
+
+echo ""
+echo "🎉 Firstboot setup complete!"
+echo ""
+echo "ℹ️ Optional manual installs:"
+echo "Oh My Zsh → https://ohmyz.sh"
+echo "Rust → https://rustup.rs"
+echo ""
