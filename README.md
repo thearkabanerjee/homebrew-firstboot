@@ -7,6 +7,10 @@ Instead of installing everything automatically during `brew install`, `firstboot
 
 ---
 
+![Downloads](https://img.shields.io/github/downloads/thearkabanerjee/firstboot/total)
+
+---
+
 ## What firstboot does
 
 `firstboot` installs commonly used development tools using Homebrew, based on a profile you choose.
