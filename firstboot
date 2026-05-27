@@ -2,12 +2,12 @@
 set -e
 
 echo ""
-echo "🚀 FIRSTBOOT — macOS Developer Environment Setup"
+echo "FIRSTBOOT — macOS Developer Environment Setup"
 echo ""
 
 # Ensure Homebrew exists
 if ! command -v brew >/dev/null 2>&1; then
-  echo "❌ Homebrew is not installed."
+  echo "Homebrew is not installed."
   echo "Install it from https://brew.sh and run firstboot again."
   exit 1
 fi
@@ -19,9 +19,9 @@ fi
 install_formula() {
   local pkg="$1"
   if brew list "$pkg" >/dev/null 2>&1; then
-    echo "✅ $pkg already installed"
+    echo "$pkg already installed"
   else
-    echo "📦 Installing $pkg"
+    echo "Installing $pkg"
     brew install "$pkg"
   fi
 }
@@ -29,9 +29,9 @@ install_formula() {
 install_cask() {
   local app="$1"
   if brew list --cask "$app" >/dev/null 2>&1; then
-    echo "✅ $app already installed"
+    echo "$app already installed"
   else
-    echo "📦 Installing $app"
+    echo "Installing $app"
     brew install --cask "$app"
   fi
 }
@@ -78,15 +78,15 @@ case "$PROFILE" in
     install_cask visual-studio-code
     ;;
   *)
-    echo "❌ Invalid selection"
+    echo "Invalid selection"
     exit 1
     ;;
 esac
 
 echo ""
-echo "🎉 Firstboot setup complete!"
+echo "Firstboot setup complete!"
 echo ""
-echo "ℹ️ Optional manual installs:"
+echo "Optional manual installs:"
 echo "Oh My Zsh → https://ohmyz.sh"
 echo "Rust → https://rustup.rs"
 echo ""
