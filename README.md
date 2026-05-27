@@ -41,7 +41,7 @@ Optional tools such as Oh My Zsh or Rust are intentionally left as **manual inst
 ### Step 1: Tap the repository
 
 ```bash
-brew tap <yourusername>/firstboot
+brew tap thearkabanerjee/firstboot
 ```
 
 ### Step 2: Install firstboot
